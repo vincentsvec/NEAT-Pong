@@ -16,16 +16,22 @@ class Ball:
         self.posx = self.dis.get_width() / 2
         self.posy = self.dis.get_height() / 2
         self.vectorX, self.vectorY = self.generate_vector()
+        self.paddle_hits = [0, 0]
+        self.paddle_mis = [0, 0]
 
     def update(self):
         """
         Updates all properties of ball. Returns True if game is over.
         """
         self.draw()
-        if self.check_collision():
-            return True
+        collision, missed_paddle = self.check_collision()
+
+        if collision:
+            return True, missed_paddle
 
         self.move()
+
+        return None, None
 
     def draw(self):
         """
@@ -59,10 +65,16 @@ class Ball:
             self.vectorY *= -1
 
         # ball hits the paddle
-        for paddle in self.paddles:
+        for player, paddle in enumerate(self.paddles):
             if paddle.get_rect().colliderect(self.rect):
                 self.vectorX *= -1
+                self.paddle_hits[player] += 1
 
         # ball hits left or right wall
-        if self.posx <= 0 or self.posx >= self.dis.get_width():
-            return True
+        if self.posx <= 0:
+            return True, "left"
+
+        elif self.posx >= self.dis.get_width():
+            return True, "right"
+
+        return None, None

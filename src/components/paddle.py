@@ -56,3 +56,10 @@ class Paddle:
         Returns pygame rectangle object
         """
         return self.rect
+
+    def ai_move(self, decision):
+        if decision == 1 and self.posy > 0:
+            self.posy -= self.speed
+
+        elif decision == 2 and self.posy < self.dis.get_height() - self.height:
+            self.posy += self.speed

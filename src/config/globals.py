@@ -10,7 +10,7 @@ colors = {
 screen = {
     "width": 800,
     "height": 500,
-    "fps": 30
+    "fps": 1000
 }
 
 paddle_conf = {

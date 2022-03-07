@@ -53,11 +53,15 @@ class Paddle:
 
     def get_rect(self):
         """
-        Returns pygame rectangle object
+        Returns pygame rectangle object.
         """
         return self.rect
 
     def ai_move(self, decision):
+        """
+        Moves paddle according to ai decision.
+        """
+
         if decision == 1 and self.posy > 0:
             self.posy -= self.speed
 

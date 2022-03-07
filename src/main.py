@@ -3,7 +3,7 @@ import neat
 import os
 from game.game import Game
 from ai.ai import AI
-from config.globals import screen
+import pickle
 
 pygame.init()
 
@@ -15,7 +15,12 @@ if __name__ == "__main__":
                          neat.DefaultSpeciesSet, neat.DefaultStagnation, conf_path)
 
     ai = AI(config)
-    ai.run()
+    mode = ai.get_mode()
 
-    #game = Game()
-    # game.run()
+    if mode == 1:
+        ai.run()
+    elif mode == 2:
+        best_ai = ai.load_best()
+        ai.test(best_ai)
+    else:
+        ai.standard_game()

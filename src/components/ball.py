@@ -17,7 +17,7 @@ class Ball:
         self.posy = self.dis.get_height() / 2
         self.vectorX, self.vectorY = self.generate_vector()
         self.paddle_hits = [0, 0]
-        self.paddle_mis = [0, 0]
+        self.paddle_miss = [0, 0]
 
     def update(self):
         """
@@ -58,6 +58,7 @@ class Ball:
     def check_collision(self):
         """
         Checks for different collisions. If ball hits the returns True if game is over.
+        Returns which paddle missed the ball to evaluate genomes.
         """
 
         # ball hits the upper or bottom wall
@@ -72,9 +73,11 @@ class Ball:
 
         # ball hits left or right wall
         if self.posx <= 0:
-            return True, "left"
+            self.paddle_miss[0] += 1
+            return True, self.paddle_miss
 
         elif self.posx >= self.dis.get_width():
-            return True, "right"
+            self.paddle_miss[1] += 1
+            return True, self.paddle_miss
 
         return None, None

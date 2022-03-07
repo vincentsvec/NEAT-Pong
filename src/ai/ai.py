@@ -26,7 +26,7 @@ class AI():
         """
 
         # uncomment next line to resume training from checkpoint
-        #pop = neat.Checkpointer.restore_checkpoint("neat-checkpoint-12")
+        #pop = neat.Checkpointer.restore_checkpoint("neat-checkpoint")
 
         # comment next line to train from checkpoint
         pop = neat.Population(self.config)

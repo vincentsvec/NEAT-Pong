@@ -1,6 +1,7 @@
 """
 Ai module
 """
+import os
 import pygame
 import neat
 import pickle
@@ -152,11 +153,17 @@ class AI():
         self.ball = Ball(self.dis, [self.paddle1, self.paddle2])
 
     def save_best(self, best):
-        with open("src/ai/best_ai.pickle", "wb") as f:
+        local_dir = os.path.dirname(__file__)
+        file_path = os.path.join(local_dir, "best_ai.pickle")
+
+        with open(file_path, "wb") as f:
             pickle.dump(best, f)
 
     def load_best(self):
-        with open("src/ai/best_ai.pickle", "rb") as f:
+        local_dir = os.path.dirname(__file__)
+        file_path = os.path.join(local_dir, "best_ai.pickle")
+
+        with open(file_path, "rb") as f:
             best_ai = pickle.load(f)
 
             return best_ai

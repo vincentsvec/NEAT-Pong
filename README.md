@@ -9,18 +9,3 @@ After each generation it evaluates the best genomes and creates next generation 
 * Training ai
 * Testing ai
 * Classic Game
-
-## Requierements
-* Python3
-* pygame
-* NEAT
-
-To install pygame
-```bash
-pip install pygame
-```
-
-To install neat
-```bash
-pip install neat-python
-```
